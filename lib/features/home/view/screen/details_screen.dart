@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tasks/core/style/text_style.dart';
 import 'package:tasks/models/data.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
@@ -28,17 +29,17 @@ class ProductDetailsScreen extends StatelessWidget {
             const SizedBox(height: 16),
             Text(
               product.title,
-              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style:  titleStyle(textSize: 20,),
             ),
             const SizedBox(height: 8),
             Text(
               "\$${product.price.toStringAsFixed(2)}",
-              style: const TextStyle(fontSize: 18, color: Colors.teal),
+              style:  bodyStyle(textSize: 18, color: Colors.teal),
             ),
             const SizedBox(height: 16),
             Text(
               product.description,
-              style: const TextStyle(fontSize: 16),
+              style:  bodyStyle(textSize: 16),
             ),
             const SizedBox(height: 32),
             Center(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tasks/core/style/colors.dart';
 import 'package:tasks/core/style/text_style.dart';
 import 'package:tasks/features/home/view/screen/details_screen.dart';
 import 'package:tasks/models/data.dart';
@@ -19,7 +20,7 @@ class CardBuilder extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (_) => ProductDetailsScreen(product: product,),
+              builder: (context) => ProductDetailsScreen(product: product,),
             ),
           );
         },
@@ -41,14 +42,24 @@ class CardBuilder extends StatelessWidget {
                       product.title ?? '-',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style:  TextStyle(fontWeight: FontWeight.bold, fontSize: 11),
+                      style: titleStyle(),
+                    ),
+                    Expanded(
+                      child: Image(image: NetworkImage(product.image),
+                      fit: BoxFit.fill,),
+                    ),
+                    Text(
+                      '\$${(product.price ??0.00).toDouble().toStringAsFixed(2)}',
+                      style:  bodyStyle(),
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          '‫\$${(product.price ?? 0).toDouble().toStringAsFixed(2)}',
-                          style:  bodyStyle(),
+                        Text('${product.rating.rate} ',
+                        style: bodyStyle(),
+                        ),
+                        Icon(Icons.star,color: AppColors.amber,size: 15,),
+                        Text('(${product.rating.count}) ',
+                          style: hashStyle(),
                         ),
                       ],
                     ),
